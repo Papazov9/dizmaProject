@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:fragment="head">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>DIZMA Furniture</title>
+        <link rel="stylesheet" href="/css/reset-css.css"/>
+        <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    </th:block>
+</head>
+<body>
+<header>
+    <!--  Not logged user navbar  -->
+    <nav class="navbar navbar-inverse navbar-static-top navbar-expand-lg bg-gray rounded-bottom h-25"
+         th:fragment="notLoggedNav">
+        <a class="navbar-brand text-danger" href="/">DIZMA</a>
+        <button class="navbar-toggler collapsed text-uppercase font-weight-bold bg-danger text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive">
+            <ul class="nav navbar-nav">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link text-white active h5" href="/user/login">Login</a>
+                </li>
+
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link text-white active h5" href="/user/register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--  Logged user navbar  -->
+    <nav class="navbar navbar-inverse navbar-static-top navbar-expand-lg bg-gray rounded-bottom"
+         th:fragment="loggedNav">
+        <a class="navbar-brand text-danger" href="/">DIZMA</a>
+
+        <button class="navbar-toggler collapsed text-uppercase font-weight-bold bg-danger text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive1">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarResponsive1">
+            <ul class="nav navbar-nav">
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a onclick="document.getElementById('myLogoutForm').submit();" sec:authorize="isAuthenticated()"
+                       class="nav-link text-white active h5">Logout</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link text-white active h5" href="/posts/add" sec:authorize="hasRole('ROLE_ADMIN')">Add
+                        Post</a>
+                </li>
+            </ul>
+            <form id="myLogoutForm" style="color: transparent" th:action="@{/user/logout}" th:method="post"></form>
+        </div>
+    </nav>
+</header>
+<th:block th:fragment="footer">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <footer class="footer bg-transparent  py-2">
+        <div class="container-fluid text-center">
+            <div class="footer-background h5 text-danger fixed-bottom">
+                &copy; SoftUni Student 2022. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</th:block>
+</body>
+</html>

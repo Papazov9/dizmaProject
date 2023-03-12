@@ -1,0 +1,37 @@
+.bg-gray {
+    background-color: gray;
+}
+
+.navbar-brand{
+    height: content-box;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.navbar-brand:hover {
+    border-radius: 10px;
+    background-color: white;
+    transition: 0.4s all linear;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    height: content-box;
+    font-size: 1.7em;
+    font-weight: 300;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+    background-color: indianred;
+    transition: 0.4s all linear;
+}
+
+.text-gray{
+    color: gray;
+}
+.bg-nav{
+    background-color: gray;
+}
+
+body {
+    margin-bottom: 5rem;
+}

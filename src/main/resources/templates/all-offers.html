@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AllOffers</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="offers.css" />
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/commons::loggedNav"></nav>
+</header>
+              <section id="gallery">
+                <div class="container">
+                  <div class="row">
+                  <div class="col-lg-4 mb-4">
+                  <div class="card">
+                    <img src="offer.jpg" alt="" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">VW GOLF II</h5>
+                      <p class="card-text">Very good car!</p>
+                      <h6>15.000$</h6>
+                     <a href="" class="btn btn-outline-success">Read More</a>
+                     <button type="button" class="btn btn-outline-danger" data-mdb-ripple-color="dark">LIKE</button>
+                     <button type="button" class="btn btn-outline-warning" data-mdb-ripple-color="dark">DELETE</button>  
+                    </div>
+                   </div>
+                  </div>
+                </div>
+              </div>
+              </section>
+            
+
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>
