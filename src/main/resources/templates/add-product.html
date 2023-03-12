@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/commons::head"></th:block>
+    <link rel="stylesheet" href="/css/home.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/commons::loggedNav"></nav>
+</header>
+
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-danger">Register</span></h1>
+    <hr class="hr-3 w-25 bg-gray"/>
+
+    <form class="mx-auto w-25 bg-blur rounded" th:method="POST" th:action="@{/admin/add-product}" th:object="${productBindingModel}" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Product name</label>
+            </div>
+            <input th:field="*{name}" th:errorclass="bg-warning" type="text" class="form-control" id="name" name="name"/>
+            <small th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="bg-gray text-light rounded">
+                The name must be at least 3 symbols long.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2 text-white">Price</label>
+            </div>
+            <input th:field="*{price}" th:errorclass="bg-warning" type="number" name="price" step="0.01" class="form-control" id="price"/>
+            <small th:if="${#fields.hasErrors('price')}"
+                   th:errors="*{price}"
+                   class="bg-gray text-light rounded">
+                The length of the last name must be at least 2 symbols.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="bean">Select the category :</label>
+            <select class="form-control" name="type" id="bean">
+                <option value="">Select category</option>
+                <option th:each="c : ${T(com.dizma.dizmademo.model.enums.CategoryEnum).values()}" th:value="${c.name()}" th:text="${c.name()}">...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="img">Image:</label>
+            <input type="file" name="file" class="form-control-file" id="img">
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn bg-gray rounded-1  mb-3">Add Product</button>
+        </div>
+
+    </form>
+</main>
+</body>
+</html>

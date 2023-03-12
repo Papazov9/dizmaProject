@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/commons::head"></th:block>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/commons::notLoggedNav"></nav>
+</header>
+<main>
+    <div class="container bg-danger mt-3 welcome-panel">
+        <h1 class="text-white text-center"> Welcome to DIZMA Furniture</h1>
+        <hr class="hr hr-blurry bg-gray w-50" />
+
+        <p class="h4 text-white text-center">If you are looking for every kind of furniture. This is your place.</p>
+        <hr class="hr hr-blurry bg-gray w-75" />
+
+        <h3 class="text-white">
+            <a class="text-gray" href="/user/login">Login</a>
+            if you have an account or
+            <a class="text-gray" href="/user/register">Register</a>
+            if these are your first steps in our website. Hope you enjoy while finding the perfect furniture for you!
+        </h3>
+    </div>
+</main>
+<th:block th:replace="fragments/commons::footer"></th:block>
+</body>
+</html>

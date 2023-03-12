@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/commons::head"></th:block>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<header><nav th:replace="fragments/commons::notLoggedNav"></nav></header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-danger">Register</span></h1>
+    <hr class="hr-3 w-25 bg-gray"/>
+
+    <form class="mx-auto w-25 bg-blur rounded" th:method="POST" th:action="@{/user/register}" th:object="${userRegistrationBinding}">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="firstName" class="h4 mb-2 text-white">First Name</label>
+            </div>
+            <input th:field="*{firstName}" th:errorclass="bg-warning" type="text" class="form-control" id="firstName" name="firstName"/>
+            <small th:if="${#fields.hasErrors('firstName')}"
+                   th:errors="*{firstName}"
+                   class="bg-gray text-light rounded">
+                The length of the first name must be at least 2 symbols.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="lastName" class="h4 mb-2 text-white">Last Name</label>
+            </div>
+            <input th:field="*{lastName}" th:errorclass="bg-warning" type="text" class="form-control" id="lastName" name="lastName"/>
+            <small th:if="${#fields.hasErrors('lastName')}"
+                   th:errors="*{lastName}"
+                   class="bg-gray text-light rounded">
+                The length of the last name must be at least 2 symbols.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="username" class="h4 mb-2 text-white">Username</label>
+            </div>
+            <input th:field="*{username}" th:errorclass="bg-warning" type="text" class="form-control" id="username" name="username"/>
+            <small th:if="${#fields.hasErrors('username')}"
+                   th:errors="*{username}"
+                   class="bg-gray text-light rounded">
+             Username must be unique and the length between 2 and 30 symbols.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="email" class="h4 mb-2">Email</label>
+            </div>
+            <input th:field="*{email}" th:errorclass="bg-warning" type="email" class="form-control" id="email" name="email"/>
+            <small th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}"
+                   class="bg-gray text-light rounded">
+                The email must contain "@"!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="phoneNumber" class="h4 mb-2">Phone Number</label>
+            </div>
+            <input th:field="*{phoneNumber}" th:errorclass="bg-warning" type="text" class="form-control" id="phoneNumber" name="phoneNumber"/>
+            <small th:if="${#fields.hasErrors('phoneNumber')}"
+                   th:errors="*{phoneNumber}"
+                   class="bg-gray text-light rounded">
+                The phone number field could not be empty!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="password" class="h4 mb-2">Password</label>
+            </div>
+            <input th:field="*{password}" th:errorclass="bg-warning" type="password" class="form-control" id="password" name="password"/>
+            <small th:if="${#fields.hasErrors('password')}"
+                   th:errors="*{password}"
+                   class="bg-gray text-light rounded">
+                The length of the password must be at least 3 symbols!</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+            </div>
+            <input th:field="*{confirmPassword}" th:errorclass="bg-warning" type="password" class="form-control" id="confirmPassword" name="confirmPassword"/>
+            <small th:if="${#fields.hasErrors('confirmPassword')}"
+                   th:errors="*{confirmPassword}"
+                   class="bg-gray text-light rounded">
+                The length of the password must be at least 3 symbols!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="age" class="h4 mb-2 text-white">Age</label>
+            </div>
+            <input th:field="*{age}" th:errorclass="bg-warning"  type="number" class="form-control" id="age" name="age"/>
+            <small th:if="${#fields.hasErrors('age')}"
+                   th:errors="*{age}"
+                class="bg-gray text-light rounded">
+            The age should be in between 0 and 150!</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn bg-gray rounded-1  mb-3" value="Register">Register</button>
+        </div>
+
+    </form>
+</main>
+<th:block th:replace="fragments/commons::footer"></th:block>
+</body>
+</html>
