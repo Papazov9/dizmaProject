@@ -1,0 +1,68 @@
+.buttons-holder {
+    gap: 10px;
+}
+
+.navbar-brand{
+    height: content-box;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.navbar-brand:hover {
+    border-radius: 10px;
+    background-color: white;
+    transition: 0.4s all linear;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    height: content-box;
+    font-size: 1.7em;
+    font-weight: 300;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+    background-color: indianred;
+    transition: 0.4s all linear;
+}
+
+.text-gray{
+    color: gray;
+}
+.bg-nav{
+    background-color: gray;
+}
+
+.bg-gray {
+    background-color: gray;
+}
+.bg-blur {
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(217, 21, 49, 0.9); /* Black w/opacity/see-through */
+    color: white;
+    border-color: lightgrey;
+    border-radius: 10px;
+    padding: 20px;
+    height: border-box;
+}
+
+.desc-holder {
+    border: solid 4px white;
+    background-color: rgba(241, 80, 101, 0.9);
+}
+.description  {
+    flex-wrap: wrap;
+    word-wrap: break-word;
+}
+
+
+.dropdown-toggle {
+    border: none;
+    color: white;
+    height: content-box;
+    width: content-box;
+}
+
+.dropdown-toggle:hover {
+    background-color: indianred;
+    transition: 0.4s all linear;
+}

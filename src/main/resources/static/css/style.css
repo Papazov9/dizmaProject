@@ -71,3 +71,8 @@ footer {
     position: sticky;
     left: 0;
 }
+
+.menu-bar{
+    color: white;
+    max-height: 2rem;
+}

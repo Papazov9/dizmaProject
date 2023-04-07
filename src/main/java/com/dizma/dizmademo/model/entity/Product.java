@@ -1,11 +1,11 @@
 package com.dizma.dizmademo.model.entity;
 
-import com.dizma.dizmademo.model.enums.CategoryEnum;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "products")
@@ -13,16 +13,22 @@ public class Product extends BaseEntity{
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     @Column(nullable = false)
     @Positive
     private BigDecimal price;
 
+    @Column(columnDefinition = "LONGTEXT")
+    private String picture;
+
+    @Column(nullable = false)
+    private LocalDate createdOn;
+
     @Column(nullable = false)
     @PositiveOrZero
     private Integer quantity;
-
-    @Column(columnDefinition = "LONGBLOB")
-    private String picture;
 
     @ManyToOne
     private Category category;
@@ -35,33 +41,38 @@ public class Product extends BaseEntity{
         return name;
     }
 
-    public void setName(String name) {
+    public Product setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Product setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
+    public Product setQuantity(Integer quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    public Product setCategory(Category category) {
+        this.category = category;
+        return this;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public String getPicture() {
         return picture;
@@ -69,6 +80,24 @@ public class Product extends BaseEntity{
 
     public Product setPicture(String picture) {
         this.picture = picture;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Product setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public LocalDate getCreatedOn() {
+        return createdOn;
+    }
+
+    public Product setCreatedOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
         return this;
     }
 }

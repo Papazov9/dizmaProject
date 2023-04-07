@@ -1,6 +1,8 @@
 package com.dizma.dizmademo.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,8 +29,8 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Integer age;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
 
@@ -97,12 +99,26 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getUserRoles() {
+        return roles;
     }
 
-    public User setRole(Role role) {
-        this.role = role;
+    public User setUserRoles(List<Role> userRoles) {
+        this.roles = userRoles;
         return this;
+    }
+
+    public User addRole(Role userRole) {
+        this.roles.add(userRole);
+        return this;
+    }
+
+    public User removeRole(Role userRole) {
+        this.roles.remove(userRole);
+        return this;
+    }
+
+    public String getFullName() {
+        return firstName + ' ' + lastName;
     }
 }

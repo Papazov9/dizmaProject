@@ -1,0 +1,190 @@
+.bg-gray {
+    background-color: gray;
+}
+
+/*Nav-bar*/
+
+.navbar-brand{
+    height: content-box;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.navbar-brand:hover {
+    border-radius: 10px;
+    background-color: white;
+    transition: 0.4s all linear;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    height: content-box;
+    font-size: 1.7em;
+    font-weight: 300;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+    background-color: indianred;
+    transition: 0.4s all linear;
+}
+
+.text-gray{
+    color: gray;
+}
+.bg-nav{
+    background-color: gray;
+}
+
+/*Nav-bar*/
+
+
+
+/*Pagination*/
+
+#paginationNav{
+    margin-bottom: 20px;
+}
+.pagination-outer{ text-align: center; }
+.pagination{
+    font-family: 'Poppins', sans-serif;
+    display: inline-flex;
+    position: relative;
+}
+.pagination li a.page-link{
+    color: #555;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 36px;
+    padding: 10px;
+    margin: 0 8px;
+    border-radius: 0;
+    border: 2px solid #eee;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease 0s;
+}
+.pagination li:first-child a.page-link,
+.pagination li:last-child a.page-link{
+    font-size: 35px;
+    line-height: 30px;
+}
+.pagination li a.page-link:hover,
+.pagination li a.page-link:focus,
+.pagination li.active a.page-link:hover,
+.pagination li.active a.page-link{
+    color: #fff;
+    background-color: transparent;
+}
+.pagination li a.page-link:before,
+.pagination li a.page-link:after{
+    content: '';
+    background-color: #01b4f5;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: -1;
+    transition: all 0.4s ease 0s;
+}
+.pagination li a.page-link:after{
+    background-color: #007bff;
+    transition: all 0.4s ease 0.1s;
+}
+.pagination li a.page-link:hover:before,
+.pagination li a.page-link:focus:before,
+.pagination li.active a.page-link:hover:before,
+.pagination li.active a.page-link:before{
+    top: -100%;
+}
+.pagination li a.page-link:hover:after,
+.pagination li a.page-link:focus:after,
+.pagination li.active a.page-link:hover:after,
+.pagination li.active a.page-link:after{
+    top: 0;
+}
+
+/*Pagination*/
+
+/*Products Overview*/
+.catalog{
+    max-width:1150px;
+    margin:10px auto;
+    padding:0px 20px;
+}
+.catalog .product {
+    position: relative;
+    max-width: 360px;
+    margin: 15px auto;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+    overflow: hidden;
+    border:2px solid #eee;
+}
+.catalog .product:hover{
+    border:2px solid #32c8de;
+}
+.catalog .product img {
+    width: 100%;
+    max-height: 200px;
+    max-width: 360px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 3px;
+}
+.catalog .product  .details h6 {
+    margin-top: 13px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.catalog .product  .details .price {
+    display: block;
+    margin-bottom: 13px;
+    font-size: 25px;
+}
+.catalog .product  .details-btn {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding-bottom:10px;
+    padding-top: 10px;
+    -webkit-transition: all 0.35s ease-in;
+    -moz-transition: all 0.35s ease-in;
+    -ms-transition: all 0.35s ease-in;
+    -o-transition: all 0.35s ease-in;
+    transition: all 0.35s ease-in;
+}
+.catalog .product:hover  .details-btn {
+    margin-top: -50px;
+}
+.catalog .product  .details-btn  a.btn{
+    border:1px solid #fff;
+    color:#fff;
+    background:transparent;
+    -webkit-transition: all 0.35s ease-in;
+    -moz-transition: all 0.35s ease-in;
+    -ms-transition: all 0.35s ease-in;
+    -o-transition: all 0.35s ease-in;
+    transition: all 0.35s ease-in;
+}
+.catalog .product  .details-btn  a.btn:hover{
+    background: indianred;
+    color: white;
+}
+
+/*Products Overview*/
+
+.dropdown-toggle {
+    border: none;
+    color: white;
+    height: content-box;
+    width: content-box;
+}
+
+.dropdown-toggle:hover {
+    background-color: indianred;
+    transition: 0.4s all linear;
+}

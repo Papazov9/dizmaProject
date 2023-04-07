@@ -5,7 +5,6 @@
 <head>
     <th:block th:replace="fragments/commons::head"></th:block>
     <link rel="stylesheet" href="/css/home.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <header>
@@ -13,12 +12,13 @@
 </header>
 
 <main>
-    <h1 class="text-center mt-2"><span class="badge badge-pill badge-danger">Register</span></h1>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-danger">Add new product</span></h1>
     <hr class="hr-3 w-25 bg-gray"/>
 
-    <form class="mx-auto w-25 bg-blur rounded" th:method="POST" th:action="@{/admin/add-product}" th:object="${productBindingModel}" enctype="multipart/form-data">
+    <form class="mx-auto w-25 bg-blur rounded" th:method="post" th:action="@{/admin/add-product}" th:object="${productBindingModel}" enctype="multipart/form-data">
 
         <div class="form-group">
+            <h2 class="text-center text-warning mt-2" th:if="${productExists}">Product with this name already exists!</h2>
             <div class="label-holder textCol d-flex justify-content-center">
                 <label for="name" class="h4 mb-2 text-white">Product name</label>
             </div>
@@ -38,28 +38,55 @@
             <small th:if="${#fields.hasErrors('price')}"
                    th:errors="*{price}"
                    class="bg-gray text-light rounded">
-                The length of the last name must be at least 2 symbols.
+                The price should be positive number.
             </small>
         </div>
 
         <div class="form-group">
-            <label for="bean">Select the category :</label>
-            <select class="form-control" name="type" id="bean">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="quantity" class="h4 mb-2 text-white">Quantity</label>
+            </div>
+            <input th:field="*{quantity}" th:errorclass="bg-warning" type="number" name="quantity" class="form-control" id="quantity"/>
+            <small th:if="${#fields.hasErrors('quantity')}"
+                   th:errors="*{quantity}"
+                   class="bg-gray text-light rounded">
+                The quantity should be 0 or higher.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="category" class="h4 mb-2 text-white">Select category</label>
+            </div>
+            <select class="form-control" name="category" id="category">
                 <option value="">Select category</option>
                 <option th:each="c : ${T(com.dizma.dizmademo.model.enums.CategoryEnum).values()}" th:value="${c.name()}" th:text="${c.name()}">...</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="img">Image:</label>
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2 text-white">Description</label>
+            </div>
+            <textarea th:field="*{description}" id="description" name="description" class="form-control">
+
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="img" class="h4 mb-2 text-white">Image</label>
+            </div>
             <input type="file" name="file" class="form-control-file" id="img">
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" class="btn bg-gray rounded-1  mb-3">Add Product</button>
+            <button type="submit" class="btn bg-gray rounded-1 mb-3">Add Product</button>
         </div>
 
     </form>
 </main>
+
+<th:block th:replace="fragments/commons::footer"></th:block>
 </body>
 </html>

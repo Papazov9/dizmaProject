@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
+<head>
+  <th:block th:replace="fragments/commons::head"></th:block>
+  <link rel="stylesheet" href="/css/user-profile.css"/>
+</head>
+<body>
+<header>
+  <nav th:replace="fragments/commons::loggedNav"></nav>
+</header>
+
+<section id="user-profile-page" class="user-profile" th:object="${user}">
+  <article class="user-info">
+    <img id="user-avatar-url" alt="user-profile" src="/img/user-profile-picture.png">
+    <div class="user-content">
+      <p id="previousUsername" th:text="|Username: ${user.username}|"></p>
+      <div class="d-block my-2" id="changeUsernameDiv" style="visibility: hidden">
+        <input th:field="${user.username}" th:errorclass="bg-warning" type="text" class="bg-white" id="username"
+               name="username"/>
+        <button type="button" class="btn bg-primary rounded-1 text-white mx-3" id="submitUsernameByn">
+          Submit
+        </button>
+      </div>
+      <small th:if="${userExists}"
+             class="bg-danger text-light rounded my-3">
+        User with this username already exists.
+      </small>
+      <button type="button" class="btn bg-gray rounded-1 text-white mb-3" id="changeUsernameBtn">Change Username</button>
+
+      <p th:text="|Email: ${user.email}|"></p>
+    </div>
+  </article>
+
+</section>
+
+<th:block th:replace="fragments/commons::footer"></th:block>
+<script src="/js/changeUsername.js"></script>
+</body>
+</html>

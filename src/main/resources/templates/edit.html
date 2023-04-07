@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/commons::head"></th:block>
+    <link rel="stylesheet" href="/css/home.css"/>
+</head>
+<body>
+<header>
+    <th:block th:replace="fragments/commons::loggedNav"></th:block>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-danger">Edit product</span></h1>
+    <hr class="hr-3 w-25 bg-gray"/>
+
+    <form th:object="${productEdit}" class="mx-auto w-25 bg-blur rounded" th:method="POST" th:action="@{/products/edit/{id}(id=*{id})}" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Product name</label>
+            </div>
+            <input th:field="*{name}" th:errorclass="bg-warning" type="text" class="form-control" id="name" name="name"/>
+            <small th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}"
+                   class="bg-gray text-light rounded">
+                The name must be at least 3 symbols long.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2 text-white">Price</label>
+            </div>
+            <input th:field="*{price}" th:errorclass="bg-warning" type="number" name="price" step="0.01" class="form-control" id="price"/>
+            <small th:if="${#fields.hasErrors('price')}"
+                   th:errors="*{price}"
+                   class="bg-gray text-light rounded">
+                The price should be positive number.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="quantity" class="h4 mb-2 text-white">Quantity</label>
+            </div>
+            <input th:field="*{quantity}" th:errorclass="bg-warning" type="number" name="quantity" class="form-control" id="quantity"/>
+            <small th:if="${#fields.hasErrors('quantity')}"
+                   th:errors="*{quantity}"
+                   class="bg-gray text-light rounded">
+                The quantity should be 0 or higher.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="category" class="h4 mb-2 text-white">Select category</label>
+            </div>
+            <select class="form-control" name="category" id="category">
+                <option th:each="c : ${T(com.dizma.dizmademo.model.enums.CategoryEnum).values()}" th:value="${c.name()}" th:text="${c.name()}">...</option>
+            </select>
+            <small th:if="${#fields.hasErrors('category')}"
+                   th:errors="*{category}"
+                   class="bg-gray text-light rounded">
+                No category selected!
+            </small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2 text-white">Description</label>
+            </div>
+            <textarea th:field="*{description}" id="description" name="description" class="form-control">
+
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="img" class="h4 mb-2 text-white">Current Image</label>
+            </div>
+            <img class="img-responsive" height="200px" width="200px" th:src="@{${'data:image/jpg;base64, ' + productEdit.picture}}" alt="no image">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="quantity" class="h4 mb-2 text-white">Choose new image</label>
+            </div>
+            <input type="file" name="file" class="form-control-file" id="img">
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning rounded-1 mb-3">Edit</button>
+        </div>
+
+    </form>
+</main>
+
+<th:block th:replace="fragments/commons::footer"></th:block>
+</body>
+</html>

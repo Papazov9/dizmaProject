@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <th:block th:replace="fragments/commons::head"></th:block>
+  <link rel="stylesheet" href="/css/admin-users.css"/>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+<body>
+<header>
+  <nav th:replace="fragments/commons::loggedNav"></nav>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="text-center text-danger">All users</h2>
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table table-striped mb-4" >
+              <thead>
+              <tr>
+                <th><h4>User</h4></th>
+                <th><h4>Phone</h4></th>
+                <th><h4>Email</h4></th>
+                <th><h4>Actions</h4></th>
+              </tr>
+              </thead>
+              <tbody id="tableBody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<th:block th:replace="fragments/commons::footer"></th:block>
+<script th:src="@{/js/users.js}"></script>
+</body>
+</html>

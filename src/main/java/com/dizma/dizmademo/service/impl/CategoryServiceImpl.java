@@ -1,12 +1,15 @@
 package com.dizma.dizmademo.service.impl;
 
 import com.dizma.dizmademo.model.entity.Category;
+import com.dizma.dizmademo.model.entity.Role;
+import com.dizma.dizmademo.model.entity.User;
 import com.dizma.dizmademo.model.enums.CategoryEnum;
 import com.dizma.dizmademo.repository.CategoryRepository;
 import com.dizma.dizmademo.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -30,8 +33,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<Category> getAllCategories() {
+        return this.categoryRepository.findAll();
+    }
+
+    @Override
     public Category findByName(CategoryEnum categoryName) {
 
         return this.categoryRepository.findByCategory(categoryName);
     }
+
+
 }

@@ -1,4 +1,5 @@
 spring:
+
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/dizma?createDatabaseIfNotExist=true&useSSL=false
@@ -9,5 +10,9 @@ spring:
     #    For MySQL 8:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     defer-datasource-initialization: true
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true

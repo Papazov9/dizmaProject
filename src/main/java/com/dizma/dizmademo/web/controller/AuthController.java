@@ -44,9 +44,9 @@ public class AuthController {
             return "redirect:register";
         }
 
-        this.userService.register(userRegistrationBinding);
+        this.userService.registerAndLogin(userRegistrationBinding);
 
-        return "redirect:login";
+        return "redirect:/";
     }
 
     @PostMapping("/login-error")
@@ -62,4 +62,5 @@ public class AuthController {
     private UserRegistrationBinding registrationBinding(){
         return new UserRegistrationBinding();
     }
+
 }

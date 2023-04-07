@@ -7,25 +7,40 @@ import java.math.BigDecimal;
 
 public class ProductBindingModel {
 
+    private Long id;
     @NotBlank(message = "The name is missing!")
     @Size(min = 3, message = "The name should be at least 3 characters long.")
     private String name;
 
-    @NotBlank(message = "The price is missing!")
     @Positive(message = "The price should be positive!")
+    @NotNull(message = "The price is missing!")
     private BigDecimal price;
 
-    @NotNull(message = "The category is missing!")
-    private String category;
+    @Min(value = 0, message = "The quantity should be 0 or higher!")
+    @NotNull(message = "The quantity is missing!")
+    private Integer quantity;
+
+    private String description;
 
     private String picture;
 
-    @Min(value = 0, message = "The quantity should be 0 or higher!")
-    private Integer quantity;
+    @NotBlank(message = "No category is selected!")
+    private String category;
+
 
     public ProductBindingModel() {
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public ProductBindingModel setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public String getName() {
         return name;
     }
@@ -68,6 +83,15 @@ public class ProductBindingModel {
 
     public ProductBindingModel setQuantity(Integer quantity) {
         this.quantity = quantity;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ProductBindingModel setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

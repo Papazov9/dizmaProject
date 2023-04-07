@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/commons::head"></th:block>
+    <link rel="stylesheet" href="/css/details-products.css"/>
+</head>
+<body>
+    <header>
+        <nav th:replace="fragments/commons::loggedNav"></nav>
+    </header>
+
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5 bg-blur">
+            <div class="row align-items-center my-3 mx-3" th:object="${productDetails}">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" th:src="@{${'data:image/jpg;base64, ' + productDetails.picture}}"  alt="no image"/> </div>
+                <div class="col-md-6">
+                    <h1 class="display-4 font-weight-bold" th:text="*{name}">Name</h1>
+                    <div class="fs-5 mb-5 d-block">
+                        <span class="font-weight-bold">Category: </span><span class="my-2 " th:text="*{category.getCategory().name()}"></span>
+                    </div>
+                    <label class="h4 font-weight-bold justify-content-center ">Price:</label>
+                    <div class="mb-5 d-block">
+                        <span th:text="'$'+ *{price}" class="font-weight-bold h2"></span>
+                    </div>
+                    <label class="h4 font-weight-bold justify-content-center ">Quantity:</label>
+                    <div class="quantity buttons_added">
+                        <input type="number" step="1" min="1" th:max="*{quantity}" name="quantity" th:field="*{chosenQuantity}" title="Qty" class="input-text qty text" size="4" pattern="" onKeyDown="return false">
+                    </div>
+                    <div class="rounded border border-white my-3 text-white desc-holder">
+                    <label class="h2 font-weight-bold justify-content-center mb-3">Description:</label>
+                    <p class="lead description" th:text="*{description}">Description....</p>
+                    </div>
+                    <div class="d-flex buttons-holder">
+                        <form>
+
+                        </form>
+                        <a class="btn btn-primary text-white" th:href="@{/products/buyIt/{id}(id=${productDetails.id})}">Buy It<i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-warning" sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${productDetails.id})}">Edit <i class="fa fa-pencil text-white" aria-hidden="true"></i>
+                        </a>
+                        <a class="btn btn-secondary text-white" id="deleteBtn" sec:authorize="hasRole('ADMIN')" th:data-id="${productDetails.id}">Delete <i class="fa fa-trash-o"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <th:block th:replace="fragments/commons::footer"></th:block>
+    <script src="/js/deleteOffer.js"></script>
+</body>
+</html>

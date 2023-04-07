@@ -5,45 +5,86 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="fragments/commons::head"></th:block>
-    <link rel="stylesheet" href="/css/home.css"/>
+    <link rel="stylesheet" href="/css/products.css"/>
 </head>
 <body>
 <header>
     <nav th:replace="fragments/commons::loggedNav"></nav>
 </header>
 
-<section class="categories">
-    <p class="text-center text-danger">Catalog:</p>
-</section>
+<div class="catalog">
+    <div class="container-fluid">
+        <h1 class="text-center text-danger">
+            <th:block th:if="${!furniture.getContent().isEmpty()}">Catalog</th:block>
+            <th:block th:if="${furniture.getContent().isEmpty()}">There are no offers!</th:block>
+        </h1>
 
-<section class="products">
-    <article class="wrapper-item prefix" th:each="f : ${furniture}" th:id="*{f.id}">
-        <div class="img-wrapper-item">
-            <img src="data:image/jpg;base64,*{f.picture}" alt="no image" class="img-flag">
-        </div>
-        <form th:action="@{/products/all}" th:method="POST" class="item-form">
-            <input name="name" disabled type="text" th:value="*{f.name}" class="text-gray">
-            <div class="text-div-item">
-                <p class="text-danger">PRICE:</p>
-                <input disabled name="price" class="text-danger inp-field" th:value="*{f.price.toString().concat('$')}">
-            </div>
-            <div class="buttons-div-item">
-                <h4>category</h4>
-                <div class="item-button" id="type">
-                    <input disabled class="inp-field" name="type" th:value="*{f.category.getCategory().name()}">
+        <div class="row">
+            <div th:each="piece : ${furniture.getContent()}" class="col-md-3 col-sm-6">
+                <div class="product">
+                    <img class="img-responsive" height="200px" width="200px" th:src="@{${'data:image/jpg;base64, ' + piece.picture}}" alt="no image">
+
+                    <div class="details">
+                        <h6 th:text="${piece.name}" class="text-danger">Name</h6>
+                        <span class="price text-danger" th:text="'$'+${piece.price}">...$</span>
+                    </div>
+
+                    <div class="bg-gray details-btn">
+                        <a class="btn btn-secondary" th:href="@{/products/{productId}(productId=${piece.id})}">Details</a>
+                    </div>
                 </div>
             </div>
-            <div class="submit-btn-wrapper">
-                <a th:href="@{/products/order-it/{id}(id=${f.id})}" type="submit" class="btn btn-danger">ORDER IT<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
-                </svg></a>
-            </div>
-            <th:block sec:authorize="hasRole('ROLE_ADMINISTRATOR')">
-                <a th:href="@{/admin/edit-product/{id}(id=${f.id})}" class="btn btn-primary">EDIT PRODUCT</a>
-            </th:block>
-        </form>
-    </article>
-</section>
+        </div>
+    </div>
+    <!-- PAGINATION -->
+    <div th:unless="${furniture.getContent().isEmpty()}" id="paginationNav"
+         class="container-fluid row justify-content-center mar">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${furniture.isFirst()} ? 'disabled' : ''">
+                    <a th:unless="${furniture.isFirst()}"
+                       th:href="@{/products/all(size=${furniture.getSize()},page=0)}"
+                       class="page-link" href="#">First</a>
+                    <a th:if="${furniture.isFirst()}"
+                       class="page-link" href="#">First</a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${furniture.hasPrevious() ? '' : 'disabled'}">
+                    <a th:if="${furniture.hasPrevious()}"
+                       th:href="@{/profucts/all(size=${furniture.getSize()},page=${furniture.getNumber() - 1})}"
+                       class="page-link" href="#">Previous</a>
+                    <a th:unless="${furniture.hasPrevious()}"
+                       class="page-link" href="#">Previous</a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${furniture.hasNext() ? '' : 'disabled'}">
+                    <a th:if="${furniture.hasNext()}"
+                       th:href="@{/products/all(size=${furniture.getSize()},page=${furniture.getNumber() + 1})}"
+                       class="page-link" href="#">Next</a>
+                    <a th:unless="${furniture.hasNext()}"
+                       class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${furniture.isLast()} ? 'disabled' : ''">
+                    <a th:unless="${furniture.isLast()}"
+                       th:href="@{/products/all(size=${furniture.getSize()},page=${furniture.getTotalPages() - 1})}"
+                       class="page-link" href="#">Last</a>
+                    <a th:if="${furniture.isLast()}"
+                       class="page-link" href="#">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
 
 <th:block th:replace="fragments/commons::footer"></th:block>

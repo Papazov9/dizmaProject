@@ -1,6 +1,5 @@
 package com.dizma.dizmademo.web.controller;
 
-import com.dizma.dizmademo.session.LoggedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,14 +11,6 @@ import java.security.Principal;
 
 @Controller
 public class HomeController {
-
-    private final LoggedUser loggedUser;
-
-    @Autowired
-    public HomeController(LoggedUser loggedUser) {
-        this.loggedUser = loggedUser;
-    }
-
 
     @GetMapping("/")
     public String home() {

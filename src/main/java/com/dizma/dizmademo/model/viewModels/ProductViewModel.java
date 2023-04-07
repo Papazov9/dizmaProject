@@ -3,6 +3,8 @@ package com.dizma.dizmademo.model.viewModels;
 import com.dizma.dizmademo.model.entity.Category;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ProductViewModel {
 
@@ -10,9 +12,13 @@ public class ProductViewModel {
 
     private String name;
 
+    private String description;
+
     private BigDecimal price;
 
     private String picture;
+
+    private LocalDate createdOn;
 
     private Integer quantity;
 
@@ -20,6 +26,17 @@ public class ProductViewModel {
 
     public ProductViewModel(){
 
+    }
+
+    public ProductViewModel(Long id, String name, String description, BigDecimal price, String picture, LocalDate createdOn, Integer quantity, Category category) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.picture = picture;
+        this.createdOn = createdOn;
+        this.quantity = quantity;
+        this.category = category;
     }
 
     public Long getId() {
@@ -73,6 +90,24 @@ public class ProductViewModel {
 
     public ProductViewModel setCategory(Category category) {
         this.category = category;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ProductViewModel setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public LocalDate getCreatedOn() {
+        return createdOn;
+    }
+
+    public ProductViewModel setCreatedOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
         return this;
     }
 }
