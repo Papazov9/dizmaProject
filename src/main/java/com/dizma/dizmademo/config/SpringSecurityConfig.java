@@ -20,7 +20,7 @@ public class SpringSecurityConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/", "/home", "/user/login", "/user/register", "/user/login-error", "/about", "/maintenance").permitAll()
                 .antMatchers("/static/**", "/js/**", "/css/**", "/img/**", "/videos/**").permitAll()
-                .antMatchers("/admin/**").hasRole(UserRoleEnum.ADMIN.name())
+                .antMatchers("/admin/**", "/api/users", "/products/edit/**").hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/moderator/**").hasRole(UserRoleEnum.MODERATOR.name())
                 .anyRequest().authenticated()
                 .and()

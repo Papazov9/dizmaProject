@@ -133,4 +133,18 @@ public class ProductServiceTest {
 
         verify(this.productRepository).saveAndFlush(adminProduct);
     }
+
+    @Test
+    void editProduct() throws IOException {
+
+        when(this.productRepository.findById(1L))
+                .thenReturn(Optional.of(this.adminProduct));
+
+        when(this.categoryService.findByName(this.adminProduct.getCategory().getCategory()))
+                .thenReturn(new Category());
+
+        this.productService.editProduct(1L, productBindingModel, multipartFile);
+
+        verify(this.productRepository).save(this.adminProduct);
+    }
 }

@@ -37,7 +37,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> getPossibleRolesToAdd(User user) {
+    public List<Role>  getPossibleRolesToAdd(User user) {
         List<Role> userRoles = user.getUserRoles();
         List<Role> all = this.roleRepository.findAll();
         all.removeAll(userRoles);

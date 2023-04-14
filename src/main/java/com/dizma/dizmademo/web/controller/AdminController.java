@@ -47,7 +47,6 @@ public class AdminController {
         this.modelMapper = modelMapper;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/add-product")
     public String addProduct() {
         return "add-product";
@@ -159,10 +158,13 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userModel", userModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult);
-            return "redirect:/admin/{username}/addRole";
+            return "redirect:/admin/{username}/removeRole";
         }
-        if (this.userService.removeRole(username, userModel)){
-            return "redirect:/admin/users";
+        if (!this.userService.removeRole(username, userModel)){
+            redirectAttributes.addFlashAttribute("userModel", userModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult);
+            redirectAttributes.addFlashAttribute("isLastRole", true);
+            return "redirect:/admin/{username}/removeRole";
         }
 
         return "redirect:/admin/users";
@@ -175,10 +177,7 @@ public class AdminController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
-    public String productNotFound(UserNotFoundException exception, Model model) {
-
-        model.addAttribute("message", exception.getMessage());
-        model.addAttribute("cause",exception.getCause().toString());
+    public String productNotFound() {
         return "error";
     }
 }

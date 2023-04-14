@@ -54,7 +54,7 @@
             <ul class="pagination">
                 <li class="page-item" th:classappend="${furniture.hasPrevious() ? '' : 'disabled'}">
                     <a th:if="${furniture.hasPrevious()}"
-                       th:href="@{/profucts/all(size=${furniture.getSize()},page=${furniture.getNumber() - 1})}"
+                       th:href="@{/products/all(size=${furniture.getSize()},page=${furniture.getNumber() - 1})}"
                        class="page-link" href="#">Previous</a>
                     <a th:unless="${furniture.hasPrevious()}"
                        class="page-link" href="#">Previous</a>

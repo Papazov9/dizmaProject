@@ -27,7 +27,7 @@
         <option th:each="r : ${rolesToRemove}" th:value="${r.getRoleName()}" th:text="${r.getRoleName()}">...</option>
       </select>
     </div>
-
+    <p th:if="${isLastRole}" id="error-password" class="border border-dark rounded" style="color: white; background-color: gray;">User must have at least one role!</p>
     <div class="button-holder d-flex justify-content-center">
       <button type="submit" class="btn bg-gray  mb-3">Remove Role</button>
     </div>

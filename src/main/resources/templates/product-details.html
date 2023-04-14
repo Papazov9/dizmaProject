@@ -27,8 +27,9 @@
                     </div>
                     <label class="h4 font-weight-bold justify-content-center ">Quantity:</label>
                     <div class="quantity buttons_added">
-                        <input type="number" step="1" min="1" th:max="*{quantity}" name="quantity" th:field="*{chosenQuantity}" title="Qty" class="input-text qty text" size="4" pattern="" onKeyDown="return false">
+                        <input type="number" step="1" min="1" th:max="*{quantity}" name="quantity" id="chosenQuantity" class="input-text qty text" size="4" pattern="" onKeyDown="return false">
                     </div>
+                    <p id="invalidQuantity" class="border border-dark rounded" style="color: white; background-color: gray; visibility: hidden;">Invalid value for quantity! Probably less than or equal to zero. </p>
                     <div class="rounded border border-white my-3 text-white desc-holder">
                     <label class="h2 font-weight-bold justify-content-center mb-3">Description:</label>
                     <p class="lead description" th:text="*{description}">Description....</p>
@@ -37,7 +38,7 @@
                         <form>
 
                         </form>
-                        <a class="btn btn-primary text-white" th:href="@{/products/buyIt/{id}(id=${productDetails.id})}">Buy It<i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
+                        <a class="btn btn-primary text-white" th:data-id="*{id}" id="buyBtn">Buy It<i class="fa fa-shopping-cart text-white" aria-hidden="true"></i>
                         </a>
                         <a class="btn btn-warning" sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${productDetails.id})}">Edit <i class="fa fa-pencil text-white" aria-hidden="true"></i>
                         </a>
@@ -51,5 +52,6 @@
 
     <th:block th:replace="fragments/commons::footer"></th:block>
     <script src="/js/deleteOffer.js"></script>
+    <script src="/js/buyIt.js"></script>
 </body>
 </html>

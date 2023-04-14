@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    Page<ProductViewModel> findAll(Pageable pageable);
 
     Optional<Product> findByName(String name);
 
@@ -25,4 +24,5 @@ public interface ProductService {
 
     void deleteOfferById(Long id) throws ProductNotFoundException;
 
+    Page<ProductViewModel> findAllWithQuantityMoreThanZero(Pageable pageable);
 }

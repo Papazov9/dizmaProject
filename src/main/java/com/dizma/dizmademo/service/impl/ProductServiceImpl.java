@@ -35,18 +35,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Page<ProductViewModel> findAll(Pageable pageable) {
-        return this.productRepository
-                .findAll(pageable)
-                .map(this::map);
-    }
-
-    private ProductViewModel map(Product product) {
-        String picture = product.getPicture();
-        return modelMapper.map(product, ProductViewModel.class).setPicture(picture);
-    }
-
-    @Override
     public Optional<Product> findByName(String name) {
         return this.productRepository.findByName(name);
     }
@@ -108,4 +96,15 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository.delete(product);
     }
 
+    @Override
+    public Page<ProductViewModel> findAllWithQuantityMoreThanZero(Pageable pageable) {
+        return this.productRepository
+                .findAllByQuantityGreaterThan(0, pageable)
+                .map(this::map);
+    }
+
+    private ProductViewModel map(Product product) {
+        String picture = product.getPicture();
+        return modelMapper.map(product, ProductViewModel.class).setPicture(picture);
+    }
 }

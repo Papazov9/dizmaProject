@@ -15,8 +15,6 @@ public class UserViewModel {
 
     private String lastName;
 
-    private String phoneNumber;
-
     public UserViewModel() {
 
     }
@@ -81,15 +79,6 @@ public class UserViewModel {
 
     public UserViewModel setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public UserViewModel setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
         return this;
     }
 }

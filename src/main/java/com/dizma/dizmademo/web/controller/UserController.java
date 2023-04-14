@@ -62,10 +62,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
-    public String productNotFound(UserNotFoundException exception, Model model) {
-
-        model.addAttribute("message", exception.getMessage());
-        model.addAttribute("cause",exception.getCause().toString());
+    public String productNotFound() {
         return "error";
     }
 }

@@ -1,4 +1,4 @@
-package com.dizma.dizmademo.web.interceptor;
+package com.dizma.dizmademo.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;

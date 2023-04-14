@@ -1,4 +1,4 @@
-package com.dizma.dizmademo.web.interceptor;
+package com.dizma.dizmademo.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
