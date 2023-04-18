@@ -109,9 +109,7 @@ public class AdminController {
                 .orElseThrow(() ->
                         new UserNotFoundException(String.format("User with username: %s was not found!", username)));
         AddRoleBindingModel userModel = this.modelMapper.map(user, AddRoleBindingModel.class);
-
-        List<Role> possibleRolesToAdd = this.roleService.getPossibleRolesToAdd(user);
-        model.addAttribute("possibleRolesToAdd", possibleRolesToAdd);
+        model.addAttribute("possibleRolesToAdd", this.roleService.getPossibleRolesToAdd(user));
 
         model.addAttribute("userModel", userModel);
 
