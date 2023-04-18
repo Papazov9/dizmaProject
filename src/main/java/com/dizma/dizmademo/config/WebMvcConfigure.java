@@ -3,6 +3,7 @@ package com.dizma.dizmademo.config;
 import com.dizma.dizmademo.interceptor.LogInterceptor;
 import com.dizma.dizmademo.interceptor.MaintenanceInterceptorConf;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 

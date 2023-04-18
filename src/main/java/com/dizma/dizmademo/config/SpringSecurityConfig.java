@@ -28,7 +28,7 @@ public class SpringSecurityConfig {
                 .loginPage("/user/login")
                 .usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
                 .passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY)
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/", true)
                 .failureForwardUrl("/user/login-error")
                 .and()
                 .logout()
